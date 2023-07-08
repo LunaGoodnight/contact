@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactItem } from "@/app/ContactItem";
 import { SortButton } from "@/app/SortButton";
 import { sortKeyMap } from "@/config/sortKeyMap";
 import { sortOrderMap } from "@/config/sortOrderMap";
@@ -86,17 +87,8 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map(({ id, first_name, last_name, job, description }) => {
-          return (
-            <tr key={id}>
-              <td>{first_name}</td>
-              <td>{last_name}</td>
-              <td>{job}</td>
-              <td>{description}</td>
-              <td>E</td>
-              <td>x</td>
-            </tr>
-          );
+        {data.map(({ id, ...others }) => {
+          return <ContactItem key={id} {...others} />;
         })}
       </tbody>
     </table>
