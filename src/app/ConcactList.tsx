@@ -108,9 +108,9 @@ export const SortButton = ({
   sortOrder: string | null;
 }) => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 cursor-pointer hover:bg-gray-300 p-2">
       {active ? (
-        <div>
+        <>
           <div
             className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] ${
               sortOrder === sortOrderMap.asc
@@ -125,14 +125,14 @@ export const SortButton = ({
                 : "border-t-gray-400"
             } border-r-transparent border-l-transparent`}
           />
-        </div>
+        </>
       ) : (
         <>
           <div
             className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
           />
           <div
-            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
+            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] border-t-gray-400 border-r-transparent border-l-transparent`}
           />
         </>
       )}
