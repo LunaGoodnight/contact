@@ -51,11 +51,10 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
                   setSortBy(sortKeyMap.firstName as SortType);
                 }}
               >
-                {sortBy === sortKeyMap.firstName ? (
-                  <div>active</div>
-                ) : (
-                  <div>Not Active</div>
-                )}
+                <SortButton
+                  active={sortBy === sortKeyMap.firstName}
+                  sortOrder={firstNameSort}
+                />
               </div>
             </div>
           </th>
@@ -70,6 +69,10 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
                   setSortBy(sortKeyMap.lastName as SortType);
                 }}
               >
+                <SortButton
+                  active={sortBy === sortKeyMap.lastName}
+                  sortOrder={lastNameSort}
+                />
                 {sortBy === sortKeyMap.lastName ? (
                   <div className="flex flex-col gap-1">
                     <div
@@ -121,5 +124,45 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
         })}
       </tbody>
     </table>
+  );
+};
+
+export const SortButton = ({
+  active,
+  sortOrder,
+}: {
+  active: boolean;
+  sortOrder: string | null;
+}) => {
+  return (
+    <div className="flex flex-col gap-1">
+      {active ? (
+        <div>
+          <div
+            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] ${
+              sortOrder === sortOrderMap.asc
+                ? "border-b-blue-500"
+                : "border-b-gray-400"
+            } border-r-transparent border-l-transparent`}
+          />
+          <div
+            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] ${
+              sortOrder === sortOrderMap.desc
+                ? "border-t-blue-500"
+                : "border-t-gray-400"
+            } border-r-transparent border-l-transparent`}
+          />
+        </div>
+      ) : (
+        <>
+          <div
+            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
+          />
+          <div
+            className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
+          />
+        </>
+      )}
+    </div>
   );
 };
