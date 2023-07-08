@@ -25,7 +25,7 @@ export const ContactPanel = async () => {
       {res.data.length ? (
         <ContactList list={res.data} />
       ) : (
-        <div>No Contacts</div>
+        <div className="text-neutral-500 font-bold text-lg">No Contacts</div>
       )}
     </div>
   );

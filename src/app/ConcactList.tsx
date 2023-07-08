@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { sortOrderMap } from "@/config/sortOrderMap";
+import { sortTypeMap } from "@/config/sortTypeMap";
 
 type SortType = "first_name" | "last_name";
 
@@ -11,16 +15,6 @@ export interface Contact {
   job: string;
   description: string;
 }
-
-export const sortTypeMap = {
-  firstName: "first_name",
-  lastName: "last_name",
-};
-
-export const sortOrderMap = {
-  asc: "asc",
-  desc: "desc",
-};
 
 export const ContactList = ({ list }: { list: Contact[] }) => {
   const [data, setData] = useState(list);
@@ -54,25 +48,40 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
     <table className="table-auto border border-slate-500 w-full text-left">
       <thead>
         <tr>
-          <th className="flex gap-1">
-            <div>First Name</div>
-            <div
-              className="cursor-pointer p-1 bg-emerald-50 leading-none"
-              onClick={() => sortData(sortTypeMap.firstName as SortType)}
-            >
-              {sortKey === sortTypeMap.firstName && sortOrder === "asc"
-                ? "▲"
-                : "▼"}
+          <th>
+            <div className="flex gap-1">
+              <div>First Name</div>
+              <div
+                className="cursor-pointer p-1 bg-emerald-50 leading-none"
+                onClick={() => sortData(sortTypeMap.firstName as SortType)}
+              >
+                {sortKey === sortTypeMap.firstName &&
+                sortOrder === sortOrderMap.asc
+                  ? "▲"
+                  : "▼"}
+              </div>
             </div>
           </th>
-          <th className="flex gap-1">
-            <div>Last Name</div>
-            <div className="cursor-pointer p-1 bg-emerald-50 leading-none">
-              ↑
+          <th>
+            <div className="flex gap-1">
+              <div>Last Name</div>
+              <div
+                className="cursor-pointer p-1 bg-emerald-50 leading-none"
+                onClick={() => sortData(sortTypeMap.lastName as SortType)}
+              >
+                {sortKey === sortTypeMap.lastName &&
+                sortOrder === sortOrderMap.asc ? (
+                  <FontAwesomeIcon icon={faSortUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faSortDown} />
+                )}
+              </div>
             </div>
           </th>
           <th>Job</th>
           <th>Description</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -83,6 +92,8 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
               <td>{last_name}</td>
               <td>{job}</td>
               <td>{description}</td>
+              <td>E</td>
+              <td>x</td>
             </tr>
           );
         })}
