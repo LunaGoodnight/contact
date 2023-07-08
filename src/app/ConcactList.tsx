@@ -73,33 +73,6 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
                   active={sortBy === sortKeyMap.lastName}
                   sortOrder={lastNameSort}
                 />
-                {sortBy === sortKeyMap.lastName ? (
-                  <div className="flex flex-col gap-1">
-                    <div
-                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] ${
-                        lastNameSort === sortOrderMap.asc
-                          ? "border-b-blue-500"
-                          : "border-b-gray-400"
-                      } border-r-transparent border-l-transparent`}
-                    />
-                    <div
-                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] ${
-                        lastNameSort === sortOrderMap.desc
-                          ? "border-t-blue-500"
-                          : "border-t-gray-400"
-                      } border-r-transparent border-l-transparent`}
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-1">
-                    <div
-                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
-                    />
-                    <div
-                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
-                    />
-                  </div>
-                )}
               </div>
             </div>
           </th>
