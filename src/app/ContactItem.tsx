@@ -11,12 +11,12 @@ export const ContactItem = ({
 }) => {
   return (
     <tr>
-      <td>{first_name}</td>
-      <td>{last_name}</td>
-      <td>{job}</td>
-      <td>{description}</td>
-      <td>E</td>
-      <td>x</td>
+      <td className="p-3">{first_name}</td>
+      <td className="p-3">{last_name}</td>
+      <td className="p-3">{job}</td>
+      <td className="p-3">{description}</td>
+      <td className="p-3">E</td>
+      <td className="p-3">x</td>
     </tr>
   );
 };

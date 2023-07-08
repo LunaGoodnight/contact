@@ -39,58 +39,65 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
     setData(sortedArray);
   }, [sortBy, firstNameSort, lastNameSort]);
   return (
-    <table className="table-auto border border-slate-500 w-full text-left">
-      <thead>
-        <tr>
-          <th>
-            <div className="flex gap-1 items-center">
-              <div>First Name</div>
-              <div
-                onClick={() => {
-                  setLastNameSort(null);
-                  setFirstNameSort((prev) =>
-                    !prev ? "asc" : toggleSortStatus(prev),
-                  );
-                  setSortBy(sortKeyMap.firstName as SortType);
-                }}
-              >
-                <SortButton
-                  active={sortBy === sortKeyMap.firstName}
-                  sortOrder={firstNameSort}
-                />
+    <div className="flex gap-3 flex-col">
+      <div className="flex justify-end w-full">
+        <button type="button" className="bg-blue-400 rounded text-white p-2">
+          Add Contact
+        </button>
+      </div>
+      <table className="table-auto w-full text-left rounded-lg bg-gray-300">
+        <thead>
+          <tr className="border border-b-blue-300">
+            <th className="p-3">
+              <div className="flex gap-1 items-center">
+                <div>First Name</div>
+                <div
+                  onClick={() => {
+                    setLastNameSort(null);
+                    setFirstNameSort((prev) =>
+                      !prev ? "asc" : toggleSortStatus(prev),
+                    );
+                    setSortBy(sortKeyMap.firstName as SortType);
+                  }}
+                >
+                  <SortButton
+                    active={sortBy === sortKeyMap.firstName}
+                    sortOrder={firstNameSort}
+                  />
+                </div>
               </div>
-            </div>
-          </th>
-          <th>
-            <div className="flex gap-1 items-center">
-              <div>Last Name</div>
-              <div
-                onClick={() => {
-                  setFirstNameSort(null);
-                  setLastNameSort((prev) =>
-                    !prev ? "asc" : toggleSortStatus(prev),
-                  );
-                  setSortBy(sortKeyMap.lastName as SortType);
-                }}
-              >
-                <SortButton
-                  active={sortBy === sortKeyMap.lastName}
-                  sortOrder={lastNameSort}
-                />
+            </th>
+            <th className="p-3">
+              <div className="flex gap-1 items-center">
+                <div>Last Name</div>
+                <div
+                  onClick={() => {
+                    setFirstNameSort(null);
+                    setLastNameSort((prev) =>
+                      !prev ? "asc" : toggleSortStatus(prev),
+                    );
+                    setSortBy(sortKeyMap.lastName as SortType);
+                  }}
+                >
+                  <SortButton
+                    active={sortBy === sortKeyMap.lastName}
+                    sortOrder={lastNameSort}
+                  />
+                </div>
               </div>
-            </div>
-          </th>
-          <th>Job</th>
-          <th>Description</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map(({ id, ...others }) => {
-          return <ContactItem key={id} {...others} />;
-        })}
-      </tbody>
-    </table>
+            </th>
+            <th className="p-3">Job</th>
+            <th className="p-3">Description</th>
+            <th className="p-3">Edit</th>
+            <th className="p-3">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(({ id, ...others }) => {
+            return <ContactItem key={id} {...others} />;
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
