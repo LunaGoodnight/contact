@@ -46,6 +46,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
               <div>First Name</div>
               <div
                 onClick={() => {
+                  setLastNameSort(null);
                   setFirstNameSort((prev) =>
                     !prev ? "asc" : toggleSortStatus(prev),
                   );
@@ -64,6 +65,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
               <div>Last Name</div>
               <div
                 onClick={() => {
+                  setFirstNameSort(null);
                   setLastNameSort((prev) =>
                     !prev ? "asc" : toggleSortStatus(prev),
                   );
