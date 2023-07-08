@@ -42,7 +42,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
       <thead>
         <tr>
           <th>
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               <div>First Name</div>
               <div
                 onClick={() => {
@@ -61,7 +61,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
             </div>
           </th>
           <th>
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               <div>Last Name</div>
               <div
                 onClick={() => {
