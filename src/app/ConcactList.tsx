@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+type SortType = "first_name" | "last_name";
+
 interface Contact {
   id: number;
   first_name: string;
@@ -10,21 +12,38 @@ interface Contact {
   description: string;
 }
 
-const sortType = {
-  firstName: "firstName",
-  lastName: "lastName",
+const sortTypeMap = {
+  firstName: "first_name",
+  lastName: "last_name",
 };
 export const ContactList = ({ list }: { list: Contact[] }) => {
-  const [contactList, setContactList] = useState(list);
-  const [firstNameSort, setFirstNameSort] = useState("init");
-  const [lastNameSort, setLastNameSort] = useState("init");
+  const [data, setData] = useState(list);
 
-  const handleSort = (type: string) => {
-    if (type === sortType.lastName) {
-      setContactList((prev) => [...prev].sort());
+  const [sortKey, setSortKey] = useState<null | "first_name" | "last_name">(
+    null,
+  );
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const sortData = (key: SortType) => {
+    let order = "asc";
+    if (sortKey === key && sortOrder === "asc") {
+      order = "desc";
     }
-  };
 
+    const sortedArray = [...data].sort((a, b) => {
+      const valueA = a[key].toLowerCase();
+      const valueB = b[key].toLowerCase();
+      return valueA.localeCompare(valueB);
+    });
+
+    if (order === "desc") {
+      sortedArray.reverse();
+    }
+
+    setData(sortedArray);
+    setSortKey(key);
+    setSortOrder(order);
+  };
   return (
     <table className="table-auto border border-slate-500 w-full text-left">
       <thead>
@@ -33,9 +52,11 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
             <div>First Name</div>
             <div
               className="cursor-pointer p-1 bg-emerald-50 leading-none"
-              onClick={() => handleSort(sortType.firstName)}
+              onClick={() => sortData(sortTypeMap.firstName as SortType)}
             >
-              ↑
+              {sortKey === sortTypeMap.firstName && sortOrder === "asc"
+                ? "▲"
+                : "▼"}
             </div>
           </th>
           <th className="flex gap-1">
@@ -49,7 +70,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
         </tr>
       </thead>
       <tbody>
-        {contactList.map(({ id, first_name, last_name, job, description }) => {
+        {data.map(({ id, first_name, last_name, job, description }) => {
           return (
             <tr key={id}>
               <td>{first_name}</td>
