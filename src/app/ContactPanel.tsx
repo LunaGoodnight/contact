@@ -1,12 +1,14 @@
 import { ContactList } from "@/app/ConcactList";
 
+interface ContactResponse extends Response {
+  statusCode?: number;
+}
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/contacts");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+  const res: ContactResponse = await fetch(
+    "http://localhost:3000/api/contacts",
+  );
 
-  // Recommendation: handle errors
-  if (!res.ok) {
+  if (res.statusCode !== 200) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
