@@ -8,9 +8,10 @@ async function getData() {
     "http://localhost:3000/api/contacts",
   );
 
+  console.log({ res });
   if (res.statusCode !== 200) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+    // throw new Error("Failed to fetch data");
   }
 
   return res.json();

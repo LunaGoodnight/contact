@@ -7,31 +7,27 @@ interface Contact {
 }
 export const ContactList = ({ list }: { list: Contact[] }) => {
   return (
-    <>
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Job</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {list.map(({ id, first_name, last_name, job, description }) => {
-              return (
-                <td key={id} className="flex">
-                  <div>{first_name}</div>
-                  <div>{last_name}</div>
-                  <div>{job}</div>
-                  <div>{description}</div>
-                </td>
-              );
-            })}
-          </tr>
-        </tbody>
-      </table>
-    </>
+    <table className="w-full">
+      <thead>
+        <tr>
+          <th className="w-1/6">First Name</th>
+          <th className="w-1/6">Last Name</th>
+          <th className="w-1/6">Job</th>
+          <th className="w-3/6">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {list.map(({ id, first_name, last_name, job, description }) => {
+          return (
+            <tr key={id} className="flex">
+              <td>{first_name}</td>
+              <td>{last_name}</td>
+              <td>{job}</td>
+              <td>{description}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
