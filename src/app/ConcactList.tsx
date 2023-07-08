@@ -1,49 +1,41 @@
 "use client";
 
-import { useState } from "react";
-import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SortType } from "@/type/SortType";
 import { sortOrderMap } from "@/config/sortOrderMap";
-import { sortTypeMap } from "@/config/sortTypeMap";
+import { sortKeyMap } from "@/config/sortKeyMap";
+import { Contact } from "@/type/Contact";
 
-type SortType = "first_name" | "last_name";
-
-export interface Contact {
-  id: number;
-  first_name: string;
-  last_name: string;
-  job: string;
-  description: string;
-}
+import { useEffect, useState } from "react";
 
 export const ContactList = ({ list }: { list: Contact[] }) => {
   const [data, setData] = useState(list);
 
-  const [sortKey, setSortKey] = useState<null | "first_name" | "last_name">(
+  const [firstNameSort, setFirstNameSort] = useState<null | "asc" | "desc">(
     null,
   );
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [lastNameSort, setLastNameSort] = useState<null | "asc" | "desc">(null);
+  const [sortBy, setSortBy] = useState<null | "first_name" | "last_name">(null);
 
-  const sortData = (key: SortType) => {
-    let order = sortOrderMap.asc;
-    if (sortKey === key && sortOrder === sortOrderMap.asc) {
-      order = sortOrderMap.desc;
-    }
+  const toggleSortStatus = (status: string) =>
+    status === "asc" ? "desc" : "asc";
 
+  useEffect(() => {
+    if (!sortBy) return;
+    const mapSort = {
+      first_name: firstNameSort,
+      last_name: lastNameSort,
+    };
     const sortedArray = [...data].sort((a, b) => {
-      const valueA = a[key].toLowerCase();
-      const valueB = b[key].toLowerCase();
+      const valueA = a[sortBy].toLowerCase();
+      const valueB = b[sortBy].toLowerCase();
       return valueA.localeCompare(valueB);
     });
 
-    if (order === "desc") {
+    if (mapSort[sortBy] === sortOrderMap.desc) {
       sortedArray.reverse();
     }
-
     setData(sortedArray);
-    setSortKey(key);
-    setSortOrder(order);
-  };
+  }, [sortBy, firstNameSort, lastNameSort]);
   return (
     <table className="table-auto border border-slate-500 w-full text-left">
       <thead>
@@ -52,13 +44,18 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
             <div className="flex gap-1">
               <div>First Name</div>
               <div
-                className="cursor-pointer p-1 bg-emerald-50 leading-none"
-                onClick={() => sortData(sortTypeMap.firstName as SortType)}
+                onClick={() => {
+                  setFirstNameSort((prev) =>
+                    !prev ? "asc" : toggleSortStatus(prev),
+                  );
+                  setSortBy(sortKeyMap.firstName as SortType);
+                }}
               >
-                {sortKey === sortTypeMap.firstName &&
-                sortOrder === sortOrderMap.asc
-                  ? "▲"
-                  : "▼"}
+                {sortBy === sortKeyMap.firstName ? (
+                  <div>active</div>
+                ) : (
+                  <div>Not Active</div>
+                )}
               </div>
             </div>
           </th>
@@ -66,14 +63,39 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
             <div className="flex gap-1">
               <div>Last Name</div>
               <div
-                className="cursor-pointer p-1 bg-emerald-50 leading-none"
-                onClick={() => sortData(sortTypeMap.lastName as SortType)}
+                onClick={() => {
+                  setLastNameSort((prev) =>
+                    !prev ? "asc" : toggleSortStatus(prev),
+                  );
+                  setSortBy(sortKeyMap.lastName as SortType);
+                }}
               >
-                {sortKey === sortTypeMap.lastName &&
-                sortOrder === sortOrderMap.asc ? (
-                  <FontAwesomeIcon icon={faSortUp} />
+                {sortBy === sortKeyMap.lastName ? (
+                  <div className="flex flex-col gap-1">
+                    <div
+                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] ${
+                        lastNameSort === sortOrderMap.asc
+                          ? "border-b-blue-500"
+                          : "border-b-gray-400"
+                      } border-r-transparent border-l-transparent`}
+                    />
+                    <div
+                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] ${
+                        lastNameSort === sortOrderMap.desc
+                          ? "border-t-blue-500"
+                          : "border-t-gray-400"
+                      } border-r-transparent border-l-transparent`}
+                    />
+                  </div>
                 ) : (
-                  <FontAwesomeIcon icon={faSortDown} />
+                  <div className="flex flex-col gap-1">
+                    <div
+                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-b-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
+                    />
+                    <div
+                      className={`w-0 h-0 border-l-[7px] border-r-[7px] border-t-[10px] border-b-gray-400 border-r-transparent border-l-transparent`}
+                    />
+                  </div>
                 )}
               </div>
             </div>
