@@ -21,11 +21,9 @@ export const ContactPanel = async () => {
   const res = await getData();
   console.log({ res });
   return (
-    <div>
+    <div className="p-20">
       {res.data.length ? (
-        <div>
-          <ContactList list={res.data} />
-        </div>
+        <ContactList list={res.data} />
       ) : (
         <div>No Contacts</div>
       )}
