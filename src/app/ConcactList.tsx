@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type SortType = "first_name" | "last_name";
 
-interface Contact {
+export interface Contact {
   id: number;
   first_name: string;
   last_name: string;
@@ -12,10 +12,16 @@ interface Contact {
   description: string;
 }
 
-const sortTypeMap = {
+export const sortTypeMap = {
   firstName: "first_name",
   lastName: "last_name",
 };
+
+export const sortOrderMap = {
+  asc: "asc",
+  desc: "desc",
+};
+
 export const ContactList = ({ list }: { list: Contact[] }) => {
   const [data, setData] = useState(list);
 
@@ -25,9 +31,9 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
   const [sortOrder, setSortOrder] = useState("asc");
 
   const sortData = (key: SortType) => {
-    let order = "asc";
-    if (sortKey === key && sortOrder === "asc") {
-      order = "desc";
+    let order = sortOrderMap.asc;
+    if (sortKey === key && sortOrder === sortOrderMap.asc) {
+      order = sortOrderMap.desc;
     }
 
     const sortedArray = [...data].sort((a, b) => {
