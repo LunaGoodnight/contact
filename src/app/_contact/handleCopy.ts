@@ -13,29 +13,41 @@ export const handleCopy = ({
   job,
   description,
 }: HandleCopyProp) => {
-  const newContact = {
-    contact: {
-      first_name,
-      last_name,
-      job,
-      description,
-    },
-  };
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to copy this contact?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Confirm",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const newContact = {
+        contact: {
+          first_name,
+          last_name,
+          job,
+          description,
+        },
+      };
 
-  addContact({ newContact }).then((res) => {
-    if (res.statusCode === 201) {
-      Swal.fire({
-        title: "Success!",
-        text: res.message,
-        icon: "success",
-        timer: 3000,
-        showConfirmButton: false,
-      });
-    } else {
-      Swal.fire({
-        title: "Error",
-        text: "Please enter all the values",
-        icon: "error",
+      addContact({ newContact }).then((res) => {
+        if (res.statusCode === 201) {
+          Swal.fire({
+            title: "Success!",
+            text: res.message,
+            icon: "success",
+            timer: 3000,
+            showConfirmButton: false,
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Please enter all the values",
+            icon: "error",
+          });
+        }
       });
     }
   });
