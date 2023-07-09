@@ -91,6 +91,9 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
           <th className={`p-${paddingSize} sm:table-cell hidden text-center`}>
             Delete
           </th>
+          <th className={`p-${paddingSize} sm:table-cell hidden text-center`}>
+            Copy
+          </th>
         </tr>
       </thead>
       <tbody>
