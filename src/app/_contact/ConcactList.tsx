@@ -37,7 +37,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
       sortedArray.reverse();
     }
     setData(sortedArray);
-  }, [sortBy, firstNameSort, lastNameSort]);
+  }, [sortBy, firstNameSort, lastNameSort, data]);
   const paddingSize = 6;
   return (
     <table className="table-auto w-full text-left rounded-lg bg-gray-100 sm:table flex flex-col">
