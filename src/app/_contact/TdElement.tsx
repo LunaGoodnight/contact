@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
 
 export const TdElement = ({
-  text,
+  text = "",
   padding,
 }: {
-  text: string | ReactElement;
-  padding: number;
+  text?: string | ReactElement;
+  padding?: number;
 }) => {
   return <td className={`p-${padding} sm:w-auto`}>{text}</td>;
 };
