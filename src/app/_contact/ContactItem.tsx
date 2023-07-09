@@ -22,7 +22,7 @@ export const ContactItem = ({
   const [editMode, setEditMode] = useState(false);
   const [firstNameValue, setFirstNameValue] = useState(first_name);
   const [lastNameValue, setLastNameValue] = useState(last_name);
-  const [jobValue, setJoValueb] = useState(job);
+  const [jobValue, setJobValue] = useState(job);
   const [descriptionValue, setDescriptionValue] = useState(description);
   const paddingSize = 4;
   const handleDelete = () => {
@@ -64,7 +64,7 @@ export const ContactItem = ({
             }
           />
           <TdElement
-            text={<InputStyle value={jobValue} callback={setJoValueb} />}
+            text={<InputStyle value={jobValue} callback={setJobValue} />}
           />
           <TdElement
             text={
