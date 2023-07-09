@@ -1,5 +1,6 @@
 import { TdElement } from "@/app/_contact/TdElement";
 import { deleteContact } from "@/app/_serverAction/deleteContact";
+import { editContact } from "@/app/_serverAction/editContact";
 import { InputStyle } from "@/utils/ui/InputStyle";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,6 +45,14 @@ export const ContactItem = ({
               icon: "success",
               timer: 3000,
             });
+          } else {
+            Swal.fire({
+              title: "Error",
+              text: res.message,
+              icon: "error",
+              timer: 4000,
+              showConfirmButton: true,
+            });
           }
         });
       }
@@ -75,7 +84,24 @@ export const ContactItem = ({
         },
       };
 
-      console.log({ contactInfo });
+      editContact(id, contactInfo).then((res) => {
+        if (res.stasusCode === 201) {
+          Swal.fire({
+            title: "Success!",
+            text: res.message,
+            icon: "success",
+            timer: 3000,
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: res.message,
+            icon: "error",
+            timer: 4000,
+            showConfirmButton: true,
+          });
+        }
+      });
     }
   };
   return (
