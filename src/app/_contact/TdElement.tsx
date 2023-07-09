@@ -13,7 +13,7 @@ export const TdElement = ({
 }) => {
   return (
     <td
-      className={`p-${padding} ${
+      className={`py-2 p-${padding} ${
         isFullWidth && "w-full"
       } sm:w-auto sm:table-cell flex flex-col gap-2`}
     >

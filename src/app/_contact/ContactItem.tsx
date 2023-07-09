@@ -29,7 +29,7 @@ export const ContactItem = ({
   const [lastNameValue, setLastNameValue] = useState(last_name);
   const [jobValue, setJobValue] = useState(job);
   const [descriptionValue, setDescriptionValue] = useState(description);
-  const paddingSize = 4;
+  const paddingSize = 6;
 
   return (
     <>
