@@ -22,7 +22,7 @@ export const ContactItem = ({
       <TdElement text={description} padding={paddingSize} />
       <TdElement
         text={
-          <div className="p-3 cursor-pointer text-lg rounded">
+          <div className="p-3 cursor-pointer text-lg rounded hover:bg-gray-400 flex items-center justify-center">
             <FontAwesomeIcon icon={faPenToSquare} />
           </div>
         }
@@ -30,7 +30,7 @@ export const ContactItem = ({
       />
       <TdElement
         text={
-          <div className="p-3 cursor-pointer text-lg rounded">
+          <div className="p-3 cursor-pointer text-lg rounded hover:bg-gray-400 flex items-center justify-center">
             <FontAwesomeIcon icon={faXmark} />
           </div>
         }
