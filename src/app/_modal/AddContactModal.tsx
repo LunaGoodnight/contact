@@ -1,5 +1,6 @@
 import { addContact } from "@/app/_modal/addContact";
 import { FormWrapper } from "@/app/_modal/FormWrapper";
+import { InputRow } from "@/app/_modal/InputRow";
 import { ModalContentWrapper } from "@/app/_modal/ModalContentWrapper";
 import { ShadowWrapper } from "@/app/_modal/ShadowWrapper";
 
@@ -31,7 +32,7 @@ export const AddContactModal = () => {
     <ShadowWrapper>
       <ModalContentWrapper>
         <form action={() => addContact(newContact)}>
-          <div className="flex justify-between items-center border-b-gray-200 border-b-2 p-2">
+          <div className="flex justify-between items-center border-b-gray-200 border-b-2 p-2 mb-3">
             <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
               Add Contact
             </h5>
@@ -44,24 +45,22 @@ export const AddContactModal = () => {
             </button>
           </div>
           <FormWrapper>
-            <div className="flex gap-2 p-2 justify-start items-center">
-              <div className="w-1/6">First Name</div>
-              <input
-                className="w-3/6 border-gray-400 border rounded outline-0 p-2"
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div className="flex gap-2 p-2 justify-start items-center">
-              <div className="w-1/6">Last Name</div>
-              <input
-                className="w-3/6 border-gray-400 border rounded outline-0 p-2"
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
+            <InputRow
+              title="First Name"
+              value={firstName}
+              callback={setFirstName}
+            />
+            <InputRow
+              title="Last Name"
+              value={lastName}
+              callback={setLastName}
+            />
+            <InputRow title="Job" value={job} callback={setJob} />
+            <InputRow
+              title="Description"
+              value={description}
+              callback={setDescription}
+            />
           </FormWrapper>
           <div className="flex justify-end">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

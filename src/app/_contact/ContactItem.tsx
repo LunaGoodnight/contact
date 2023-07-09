@@ -11,7 +11,7 @@ export const ContactItem = ({
   job: string;
   description: string;
 }) => {
-  const paddingSize = 5;
+  const paddingSize = 4;
   return (
     <tr>
       <TdElement text={first_name} padding={paddingSize} />

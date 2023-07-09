@@ -38,12 +38,13 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
     }
     setData(sortedArray);
   }, [sortBy, firstNameSort, lastNameSort]);
+
   return (
     <div className="">
       <table className="table-auto w-full text-left rounded-lg bg-gray-300">
         <thead>
           <tr className="border border-b-blue-300">
-            <th className="p-3">
+            <th className="p-4">
               <div className="flex gap-1 items-center">
                 <div>First Name</div>
                 <div
@@ -62,7 +63,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
                 </div>
               </div>
             </th>
-            <th className="p-3">
+            <th className="p-4">
               <div className="flex gap-1 items-center">
                 <div>Last Name</div>
                 <div
