@@ -12,7 +12,7 @@ interface IContactContext {
 const defaultState = {
   text: "",
   type: "Success" as ToastType,
-  isModal: false,
+  isModal: true,
 };
 
 export const ContactContext = createContext<IContactContext>(defaultState);

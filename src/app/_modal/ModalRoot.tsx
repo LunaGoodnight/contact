@@ -1,3 +1,5 @@
+"use client";
+
 import { ContactContext } from "@/app/_context/Provider";
 import { AddContactModal } from "@/app/_modal/AddContactModal";
 import { useContext } from "react";
@@ -12,5 +14,5 @@ const ModalMap = {
 export const ModalRoot = () => {
   const isModal = useContext(ContactContext);
   const DynamicModal = ModalMap["ADD_CONTACT"];
-  return <div>adfadsf</div>;
+  return isModal ? <DynamicModal /> : null;
 };
