@@ -1,5 +1,6 @@
 "use client";
 
+import { AddContactPanel } from "@/app/AddContactPanel";
 import { ContactItem } from "@/app/ContactItem";
 import { SortButton } from "@/app/SortButton";
 import { sortKeyMap } from "@/config/sortKeyMap";
@@ -39,12 +40,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
     setData(sortedArray);
   }, [sortBy, firstNameSort, lastNameSort]);
   return (
-    <div className="flex gap-3 flex-col">
-      <div className="flex justify-end w-full">
-        <button type="button" className="bg-blue-400 rounded text-white p-2">
-          Add Contact
-        </button>
-      </div>
+    <div className="">
       <table className="table-auto w-full text-left rounded-lg bg-gray-300">
         <thead>
           <tr className="border border-b-blue-300">
@@ -86,10 +82,10 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
                 </div>
               </div>
             </th>
-            <th className="p-3">Job</th>
-            <th className="p-3">Description</th>
-            <th className="p-3">Edit</th>
-            <th className="p-3">Delete</th>
+            <th className="p-4">Job</th>
+            <th className="p-4">Description</th>
+            <th className="p-4">Edit</th>
+            <th className="p-4">Delete</th>
           </tr>
         </thead>
         <tbody>

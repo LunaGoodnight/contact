@@ -1,3 +1,4 @@
+import { AddContactPanel } from "@/app/AddContactPanel";
 import { ContactList } from "@/app/ConcactList";
 
 interface ContactResponse extends Response {
@@ -8,12 +9,6 @@ async function getData() {
     "http://localhost:3000/api/contacts",
   );
 
-  console.log({ res });
-  if (res.statusCode !== 200) {
-    // This will activate the closest `error.js` Error Boundary
-    // throw new Error("Failed to fetch data");
-  }
-
   return res.json();
 }
 
@@ -21,7 +16,8 @@ export const ContactPanel = async () => {
   const res = await getData();
   console.log({ res });
   return (
-    <div className="p-20">
+    <div className="p-20 flex gap-3 flex-col">
+      <AddContactPanel />
       {res.data.length ? (
         <ContactList list={res.data} />
       ) : (

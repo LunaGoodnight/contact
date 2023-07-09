@@ -1,3 +1,5 @@
+import { TdElement } from "@/app/TdElement";
+
 export const ContactItem = ({
   first_name,
   last_name,
@@ -9,14 +11,15 @@ export const ContactItem = ({
   job: string;
   description: string;
 }) => {
+  const paddingSize = 5;
   return (
     <tr>
-      <td className="p-3">{first_name}</td>
-      <td className="p-3">{last_name}</td>
-      <td className="p-3">{job}</td>
-      <td className="p-3">{description}</td>
-      <td className="p-3">E</td>
-      <td className="p-3">x</td>
+      <TdElement text={first_name} padding={paddingSize} />
+      <TdElement text={last_name} padding={paddingSize} />
+      <TdElement text={job} padding={paddingSize} />
+      <TdElement text={description} padding={paddingSize} />
+      <TdElement text={"edit"} padding={paddingSize} />
+      <TdElement text={"x"} padding={paddingSize} />
     </tr>
   );
 };
