@@ -1,14 +1,13 @@
 import Swal from "sweetalert2";
+import { useContext, useState } from "react";
+import { ModalContentWrapper } from "@/app/_modal/ModalContentWrapper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { addContact } from "@/app/_serverAction/addContact";
+import { ShadowWrapper } from "@/app/_modal/ShadowWrapper";
+import { ModalTypeContext } from "@/app/_context/Provider";
 import { FormWrapper } from "@/app/_modal/FormWrapper";
 import { InputRow } from "@/app/_modal/InputRow";
-import { ModalContentWrapper } from "@/app/_modal/ModalContentWrapper";
-import { ShadowWrapper } from "@/app/_modal/ShadowWrapper";
-
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react";
-import { ModalTypeContext } from "@/app/_context/Provider";
 
 export const AddContactModal = () => {
   const { setModalType } = useContext(ModalTypeContext);
@@ -28,12 +27,12 @@ export const AddContactModal = () => {
     };
     const checkItem = Object.values(newContact.contact).map((x) => x.trim());
     if (checkItem.every((x) => x.length)) {
-      addContact({ newContact }).then((data) => {
+      addContact({ newContact }).then((res) => {
         setModalType(null);
-        if (data.statusCode === 201) {
+        if (res.statusCode === 201) {
           Swal.fire({
             title: "Success!",
-            text: data.message,
+            text: res.message,
             icon: "success",
             timer: 3000,
             showConfirmButton: false,

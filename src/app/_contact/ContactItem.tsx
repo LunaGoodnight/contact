@@ -1,9 +1,8 @@
-import { handleEdit } from "@/app/_contact/handleEdit";
-import Swal from "sweetalert2";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { editContact } from "@/app/_serverAction/editContact";
 import { handleDelete } from "@/app/_contact/handleDelete";
+import { handleCopy } from "@/app/_contact/handleCopy";
+import { handleEdit } from "@/app/_contact/handleEdit";
 import { TdElement } from "@/app/_contact/TdElement";
 import { InputStyle } from "@/utils/ui/InputStyle";
 import {
@@ -127,7 +126,12 @@ export const ContactItem = ({
           </td>
 
           <td className={`p-${paddingSize} sm:w-auto`}>
-            <div className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center">
+            <div
+              className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
+              onClick={() =>
+                handleCopy({ first_name, last_name, job, description })
+              }
+            >
               <FontAwesomeIcon icon={faClone} />
             </div>
           </td>
