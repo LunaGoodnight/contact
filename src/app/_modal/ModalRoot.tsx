@@ -1,18 +1,23 @@
 "use client";
 
-import { ContactContext } from "@/app/_context/Provider";
+import { ModalTypeContext } from "@/app/_context/Provider";
 import { AddContactModal } from "@/app/_modal/AddContactModal";
-import { useContext } from "react";
+import React, { useContext } from "react";
 
-export const ModalName = {
+export const modalName = {
   addContact: "ADD_CONTACT",
 };
-const ModalMap = {
+
+interface ModalMapType {
+  [k: string]: () => React.ReactNode;
+}
+const ModalMap: ModalMapType = {
   ADD_CONTACT: AddContactModal,
 };
 
 export const ModalRoot = () => {
-  const isModal = useContext(ContactContext);
-  const DynamicModal = ModalMap["ADD_CONTACT"];
-  return isModal ? <DynamicModal /> : null;
+  const { modalType } = useContext(ModalTypeContext);
+  if (!modalType) return null;
+  const DynamicModal = ModalMap[modalType];
+  return <DynamicModal />;
 };
