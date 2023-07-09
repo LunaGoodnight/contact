@@ -50,9 +50,9 @@ export const ContactItem = ({
     });
   };
   return (
-    <tr className="sm:table-row flex flex-wrap sm:p-0 p-2 border-b-gray-300 border-2 min-h-[20]">
+    <>
       {editMode ? (
-        <>
+        <tr className="sm:table-row flex flex-wrap sm:p-4 border-b-gray-300 border-2 ">
           <TdElement
             text={
               <InputStyle value={firstNameValue} callback={setFirstNameValue} />
@@ -74,10 +74,24 @@ export const ContactItem = ({
               />
             }
           />
-          <TdElement text={<div>Cancel</div>} />
-        </>
+          <TdElement
+            text={
+              <div className="flex gap-2">
+                <div
+                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                  onClick={() => setEditMode(false)}
+                >
+                  Cancel
+                </div>
+                <div className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Confirm
+                </div>
+              </div>
+            }
+          />
+        </tr>
       ) : (
-        <>
+        <tr className="sm:table-row flex flex-wrap sm:p-2 border-b-gray-300 border-2">
           <TdElement text={first_name} padding={paddingSize} />
           <TdElement text={last_name} padding={paddingSize} />
           <TdElement text={job} padding={paddingSize} />
@@ -98,8 +112,8 @@ export const ContactItem = ({
               <FontAwesomeIcon icon={faXmark} />
             </div>
           </td>
-        </>
+        </tr>
       )}
-    </tr>
+    </>
   );
 };

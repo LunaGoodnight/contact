@@ -85,8 +85,12 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
           <th className={`p-${paddingSize} sm:table-cell hidden`}>
             Description
           </th>
-          <th className={`p-${paddingSize} sm:table-cell hidden`}>Edit</th>
-          <th className={`p-${paddingSize} sm:table-cell hidden`}>Delete</th>
+          <th className={`p-${paddingSize} sm:table-cell hidden text-center`}>
+            Edit
+          </th>
+          <th className={`p-${paddingSize} sm:table-cell hidden text-center`}>
+            Delete
+          </th>
         </tr>
       </thead>
       <tbody>
