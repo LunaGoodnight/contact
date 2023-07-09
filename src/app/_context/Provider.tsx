@@ -1,26 +1,40 @@
 "use client";
 
-import { createContext } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useReducer,
+  useState,
+} from "react";
 
 type ToastType = "Success" | "Warning";
 interface IContactContext {
   text: string;
   type: ToastType;
-  isModal: boolean;
 }
 
 const defaultState = {
   text: "",
   type: "Success" as ToastType,
-  isModal: true,
+};
+interface IModalType {
+  modalType: string | null;
+  setModalType: Dispatch<SetStateAction<string | null>>;
+}
+
+const iUserContextState = {
+  modalType: null,
+  setModalType: () => {},
 };
 
-export const ContactContext = createContext<IContactContext>(defaultState);
+export const ModalTypeContext = createContext<IModalType>(iUserContextState);
 
 export const Provider = ({ children }: { children: React.ReactNode }) => {
+  const [modalType, setModalType] = useState<string | null>(null);
   return (
-    <ContactContext.Provider value={defaultState}>
+    <ModalTypeContext.Provider value={{ modalType, setModalType }}>
       {children}
-    </ContactContext.Provider>
+    </ModalTypeContext.Provider>
   );
 };

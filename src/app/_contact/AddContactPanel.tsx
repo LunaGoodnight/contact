@@ -1,3 +1,5 @@
+"use client";
+
 async function postData() {
   const res = await fetch("http://localhost:3000/api/contacts");
 
