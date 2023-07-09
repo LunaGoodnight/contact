@@ -1,6 +1,7 @@
 "use client";
 
 import { ModalTypeContext } from "@/app/_context/Provider";
+import { modalName } from "@/app/_modal/ModalRoot";
 import { useContext } from "react";
 
 async function postData() {
@@ -17,7 +18,7 @@ export const AddContactPanel = () => {
       <button
         type="button"
         className="bg-blue-400 rounded text-white p-2"
-        onClick={() => setModalType()}
+        onClick={() => setModalType(modalName.addContact)}
       >
         Add Contact
       </button>

@@ -5,7 +5,6 @@ import {
   Dispatch,
   SetStateAction,
   useMemo,
-  useReducer,
   useState,
 } from "react";
 
@@ -33,7 +32,10 @@ export const ModalTypeContext = createContext<IModalType>(iUserContextState);
 
 export const Provider = ({ children }: { children: React.ReactNode }) => {
   const [modalType, setModalType] = useState<string | null>(null);
-  const modalMemo = useMemo(() => ({ modalType, setModalType }), []);
+  const modalMemo = useMemo(
+    () => ({ modalType, setModalType }),
+    [modalType, setModalType],
+  );
   return (
     <ModalTypeContext.Provider value={modalMemo}>
       {children}
