@@ -17,15 +17,15 @@ export const AddContactModal = () => {
   const [job, setJob] = useState("");
   const [description, setDescription] = useState("");
 
-  const newContact = {
-    contact: {
-      first_name: firstName,
-      last_name: lastName,
-      job,
-      description,
-    },
-  };
   const handleAction = () => {
+    const newContact = {
+      contact: {
+        first_name: firstName,
+        last_name: lastName,
+        job,
+        description,
+      },
+    };
     const checkItem = Object.values(newContact.contact).map((x) => x.trim());
     if (checkItem.every((x) => x.length)) {
       addContact({ newContact }).then((data) => {

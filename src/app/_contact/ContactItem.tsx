@@ -63,6 +63,19 @@ export const ContactItem = ({
         timer: 3000,
         showConfirmButton: false,
       });
+    } else {
+      const contactInfo = {
+        info: {
+          ...(first_name !== firstNameValue && { first_name: firstNameValue }),
+          ...(last_name !== lastNameValue && { last_name: lastNameValue }),
+          ...(job !== jobValue && { job: jobValue }),
+          ...(description !== descriptionValue && {
+            description: descriptionValue,
+          }),
+        },
+      };
+
+      console.log({ contactInfo });
     }
   };
   return (
