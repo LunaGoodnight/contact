@@ -2,13 +2,7 @@
 
 import { ModalTypeContext } from "@/app/_context/Provider";
 import { modalName } from "@/app/_modal/ModalRoot";
-import { useContext, useState } from "react";
-
-async function postData() {
-  const res = await fetch("http://localhost:3000/api/contacts");
-
-  return res.json();
-}
+import { useContext } from "react";
 
 export const AddContactPanel = () => {
   const { setModalType } = useContext(ModalTypeContext);
@@ -16,7 +10,7 @@ export const AddContactPanel = () => {
     <div className="flex justify-end w-full">
       <button
         type="button"
-        className="bg-blue-400 rounded text-white p-2"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={() => setModalType(modalName.addContact)}
       >
         Add Contact
