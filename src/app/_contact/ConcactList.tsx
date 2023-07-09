@@ -38,12 +38,12 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
     }
     setData(sortedArray);
   }, [sortBy, firstNameSort, lastNameSort]);
-
+  const paddingSize = 6;
   return (
     <table className="table-auto w-full text-left rounded-lg bg-gray-100 sm:table flex flex-col">
       <thead>
         <tr className="border border-b-blue-300 sm:table-row flex">
-          <th className="p-4">
+          <th className={`p-${paddingSize}`}>
             <div className="flex gap-1 items-center">
               <div>First Name</div>
               <div
@@ -62,7 +62,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
               </div>
             </div>
           </th>
-          <th className="p-4">
+          <th className={`p-${paddingSize}`}>
             <div className="flex gap-1 items-center">
               <div>Last Name</div>
               <div
@@ -81,10 +81,12 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
               </div>
             </div>
           </th>
-          <th className="p-4 sm:table-cell hidden">Job</th>
-          <th className="p-4 sm:table-cell hidden">Description</th>
-          <th className="p-4 sm:table-cell hidden">Edit</th>
-          <th className="p-4 sm:table-cell hidden">Delete</th>
+          <th className={`p-${paddingSize} sm:table-cell hidden`}>Job</th>
+          <th className={`p-${paddingSize} sm:table-cell hidden`}>
+            Description
+          </th>
+          <th className={`p-${paddingSize} sm:table-cell hidden`}>Edit</th>
+          <th className={`p-${paddingSize} sm:table-cell hidden`}>Delete</th>
         </tr>
       </thead>
       <tbody>

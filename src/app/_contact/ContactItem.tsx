@@ -1,5 +1,6 @@
 import { TdElement } from "@/app/_contact/TdElement";
 import { deleteContact } from "@/app/_serverAction/deleteContact";
+import { InputStyle } from "@/utils/ui/InputStyle";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -49,41 +50,31 @@ export const ContactItem = ({
     });
   };
   return (
-    <tr className="sm:table-row flex flex-wrap sm:p-0 p-2 sm:border-none border-b-gray-300 border-2">
+    <tr className="sm:table-row flex flex-wrap sm:p-0 p-2 border-b-gray-300 border-2 min-h-[20]">
       {editMode ? (
         <>
           <TdElement
             text={
-              <input
-                value={lastNameValue}
-                onChange={(e) => setLastNameValue(e.target.value)}
-              />
+              <InputStyle value={firstNameValue} callback={setFirstNameValue} />
             }
           />
           <TdElement
             text={
-              <input
-                value={firstNameValue}
-                onChange={(e) => setFirstNameValue(e.target.value)}
-              />
+              <InputStyle value={lastNameValue} callback={setLastNameValue} />
             }
           />
           <TdElement
-            text={
-              <input
-                value={jobValue}
-                onChange={(e) => setJoValueb(e.target.value)}
-              />
-            }
+            text={<InputStyle value={jobValue} callback={setJoValueb} />}
           />
           <TdElement
             text={
-              <input
+              <InputStyle
                 value={descriptionValue}
-                onChange={(e) => setDescriptionValue(e.target.value)}
+                callback={setDescriptionValue}
               />
             }
           />
+          <TdElement text={<div>Cancel</div>} />
         </>
       ) : (
         <>
@@ -91,28 +82,22 @@ export const ContactItem = ({
           <TdElement text={last_name} padding={paddingSize} />
           <TdElement text={job} padding={paddingSize} />
           <TdElement text={description} padding={paddingSize} />
-          <TdElement
-            text={
-              <div
-                className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
-                onClick={() => setEditMode(true)}
-              >
-                <FontAwesomeIcon icon={faPenToSquare} />
-              </div>
-            }
-            padding={paddingSize}
-          />
-          <TdElement
-            text={
-              <div
-                onClick={handleDelete}
-                className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
-              >
-                <FontAwesomeIcon icon={faXmark} />
-              </div>
-            }
-            padding={paddingSize}
-          />
+          <td className={`p-${paddingSize} sm:w-auto`}>
+            <div
+              className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
+              onClick={() => setEditMode(true)}
+            >
+              <FontAwesomeIcon icon={faPenToSquare} />
+            </div>
+          </td>
+          <td className={`p-${paddingSize} sm:w-auto`}>
+            <div
+              onClick={handleDelete}
+              className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
+          </td>
         </>
       )}
     </tr>
