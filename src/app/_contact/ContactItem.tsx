@@ -1,11 +1,16 @@
-import { TdElement } from "@/app/_contact/TdElement";
-import { deleteContact } from "@/app/_serverAction/deleteContact";
-import { editContact } from "@/app/_serverAction/editContact";
-import { InputStyle } from "@/utils/ui/InputStyle";
-import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { handleEdit } from "@/app/_contact/handleEdit";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { editContact } from "@/app/_serverAction/editContact";
+import { handleDelete } from "@/app/_contact/handleDelete";
+import { TdElement } from "@/app/_contact/TdElement";
+import { InputStyle } from "@/utils/ui/InputStyle";
+import {
+  faClone,
+  faPenToSquare,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const ContactItem = ({
   id,
@@ -26,84 +31,7 @@ export const ContactItem = ({
   const [jobValue, setJobValue] = useState(job);
   const [descriptionValue, setDescriptionValue] = useState(description);
   const paddingSize = 4;
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Do you really want to delete this contact?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirm",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteContact(id).then((res) => {
-          if (res.statusCode === 200) {
-            Swal.fire({
-              title: "Success!",
-              text: res.message,
-              icon: "success",
-              timer: 3000,
-            });
-          } else {
-            Swal.fire({
-              title: "Error",
-              text: res.message,
-              icon: "error",
-              timer: 4000,
-              showConfirmButton: true,
-            });
-          }
-        });
-      }
-    });
-  };
 
-  const handleEdit = () => {
-    if (
-      firstNameValue === first_name &&
-      lastNameValue === last_name &&
-      jobValue === job &&
-      descriptionValue === description
-    ) {
-      Swal.fire({
-        title: "You didn't change anything",
-        icon: "error",
-        timer: 3000,
-        showConfirmButton: false,
-      });
-    } else {
-      const contactInfo = {
-        info: {
-          ...(first_name !== firstNameValue && { first_name: firstNameValue }),
-          ...(last_name !== lastNameValue && { last_name: lastNameValue }),
-          ...(job !== jobValue && { job: jobValue }),
-          ...(description !== descriptionValue && {
-            description: descriptionValue,
-          }),
-        },
-      };
-
-      editContact(id, contactInfo).then((res) => {
-        if (res.stasusCode === 201) {
-          Swal.fire({
-            title: "Success!",
-            text: res.message,
-            icon: "success",
-            timer: 3000,
-          });
-        } else {
-          Swal.fire({
-            title: "Error",
-            text: res.message,
-            icon: "error",
-            timer: 4000,
-            showConfirmButton: true,
-          });
-        }
-      });
-    }
-  };
   return (
     <>
       {editMode ? (
@@ -145,7 +73,19 @@ export const ContactItem = ({
                   Cancel
                 </button>
                 <button
-                  onClick={handleEdit}
+                  onClick={() =>
+                    handleEdit({
+                      first_name,
+                      firstNameValue,
+                      lastNameValue,
+                      last_name,
+                      job,
+                      jobValue,
+                      descriptionValue,
+                      description,
+                      id,
+                    })
+                  }
                   type="button"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
@@ -156,7 +96,7 @@ export const ContactItem = ({
           />
           <td className={`p-${paddingSize} sm:w-auto`}>
             <div
-              onClick={handleDelete}
+              onClick={() => handleDelete(id)}
               className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faXmark} />
@@ -179,10 +119,16 @@ export const ContactItem = ({
           </td>
           <td className={`p-${paddingSize} sm:w-auto`}>
             <div
-              onClick={handleDelete}
+              onClick={() => handleDelete(id)}
               className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faXmark} />
+            </div>
+          </td>
+
+          <td className={`p-${paddingSize} sm:w-auto`}>
+            <div className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center">
+              <FontAwesomeIcon icon={faClone} />
             </div>
           </td>
         </tr>
