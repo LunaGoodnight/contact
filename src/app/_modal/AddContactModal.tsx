@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { addContact } from "@/app/_modal/addContact";
 import { FormWrapper } from "@/app/_modal/FormWrapper";
 import { InputRow } from "@/app/_modal/InputRow";
@@ -28,11 +29,21 @@ export const AddContactModal = () => {
     const checkItem = Object.values(newContact.contact).map((x) => x.trim());
     if (checkItem.every((x) => x.length)) {
       addContact({ newContact }).then((data) => {
-        console.log({ data });
         setModalType(null);
+        if (data.statusCode === 201) {
+          Swal.fire({
+            title: "Success!",
+            text: data.message,
+            icon: "success",
+          });
+        }
       });
     } else {
-      alert("enter value!!!!!!!");
+      Swal.fire({
+        title: "Error",
+        text: "Please enter all the values",
+        icon: "error",
+      });
     }
   };
   return (

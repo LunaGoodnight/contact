@@ -7,6 +7,7 @@ interface ContactResponse extends Response {
 async function getData() {
   const res: ContactResponse = await fetch(
     "http://localhost:3000/api/contacts",
+    { next: { revalidate: 10 } },
   );
 
   return res.json();
