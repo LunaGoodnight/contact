@@ -104,10 +104,19 @@ export const ContactItem = ({
         </tr>
       ) : (
         <tr className="sm:table-row flex flex-wrap sm:p-2 border-b-gray-200 border-2">
-          <TdElement text={first_name} padding={paddingSize} />
-          <TdElement text={last_name} padding={paddingSize} />
-          <TdElement text={job} padding={paddingSize} />
-          <TdElement text={description} padding={paddingSize} />
+          <TdElement
+            text={first_name}
+            padding={paddingSize}
+            title="First Name"
+          />
+          <TdElement text={last_name} padding={paddingSize} title="Last Name" />
+          <TdElement text={job} padding={paddingSize} title="Job" />
+          <TdElement
+            text={description}
+            padding={paddingSize}
+            isFullWidth
+            title="Description"
+          />
           <td className={`p-${paddingSize} sm:w-auto`}>
             <div
               className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
