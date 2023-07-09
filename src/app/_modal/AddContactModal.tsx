@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { addContact } from "@/app/_modal/addContact";
+import { addContact } from "@/app/_serverAction/addContact";
 import { FormWrapper } from "@/app/_modal/FormWrapper";
 import { InputRow } from "@/app/_modal/InputRow";
 import { ModalContentWrapper } from "@/app/_modal/ModalContentWrapper";

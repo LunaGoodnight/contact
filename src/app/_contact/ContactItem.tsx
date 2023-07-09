@@ -1,4 +1,6 @@
 import { TdElement } from "@/app/_contact/TdElement";
+import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ContactItem = ({
   first_name,
@@ -18,8 +20,22 @@ export const ContactItem = ({
       <TdElement text={last_name} padding={paddingSize} />
       <TdElement text={job} padding={paddingSize} />
       <TdElement text={description} padding={paddingSize} />
-      <TdElement text={"edit"} padding={paddingSize} />
-      <TdElement text={"x"} padding={paddingSize} />
+      <TdElement
+        text={
+          <div className="p-3 cursor-pointer text-lg rounded">
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </div>
+        }
+        padding={paddingSize}
+      />
+      <TdElement
+        text={
+          <div className="p-3 cursor-pointer text-lg rounded">
+            <FontAwesomeIcon icon={faXmark} />
+          </div>
+        }
+        padding={paddingSize}
+      />
     </tr>
   );
 };
