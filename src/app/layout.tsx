@@ -1,4 +1,6 @@
 import "./globals.css";
+import { Provider } from "@/app/_context/Provider";
+import { ModalRoot } from "@/app/_modal/ModalRoot";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -21,10 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="p-6 font-bold text-lg bg-gray-200">
-          Contact Management
-        </header>
-        {children}
+        <Provider>
+          <ModalRoot />
+          <header className="p-6 font-bold text-lg bg-gray-200">
+            Contact Management
+          </header>
+          {children}
+        </Provider>
       </body>
     </html>
   );
