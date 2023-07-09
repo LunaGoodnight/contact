@@ -35,6 +35,7 @@ export const AddContactModal = () => {
             title: "Success!",
             text: data.message,
             icon: "success",
+            timer: 3000,
           });
         }
       });

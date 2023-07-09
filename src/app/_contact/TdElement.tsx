@@ -5,5 +5,5 @@ export const TdElement = ({
   text: string;
   padding: number;
 }) => {
-  return <td className={`p-${padding}`}>{text}</td>;
+  return <td className={`p-${padding} sm:w-auto`}>{text}</td>;
 };

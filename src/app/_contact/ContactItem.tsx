@@ -13,7 +13,7 @@ export const ContactItem = ({
 }) => {
   const paddingSize = 4;
   return (
-    <tr>
+    <tr className="sm:table-row flex flex-wrap sm:p-0 p-2 sm:border-none border-b-gray-300 border-2">
       <TdElement text={first_name} padding={paddingSize} />
       <TdElement text={last_name} padding={paddingSize} />
       <TdElement text={job} padding={paddingSize} />
