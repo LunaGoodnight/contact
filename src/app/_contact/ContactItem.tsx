@@ -49,24 +49,44 @@ export const ContactItem = ({
       }
     });
   };
+
+  const handleEdit = () => {
+    if (
+      firstNameValue === first_name &&
+      lastNameValue === last_name &&
+      jobValue === job &&
+      descriptionValue === description
+    ) {
+      Swal.fire({
+        title: "You didn't change anything",
+        icon: "error",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+    }
+  };
   return (
     <>
       {editMode ? (
-        <tr className="sm:table-row flex flex-wrap sm:p-4 border-b-gray-300 border-2 ">
+        <tr className="sm:table-row flex flex-wrap sm:p-4 border-b-gray-200 border-2 ">
           <TdElement
+            padding={2}
             text={
               <InputStyle value={firstNameValue} callback={setFirstNameValue} />
             }
           />
           <TdElement
+            padding={2}
             text={
               <InputStyle value={lastNameValue} callback={setLastNameValue} />
             }
           />
           <TdElement
+            padding={2}
             text={<InputStyle value={jobValue} callback={setJobValue} />}
           />
           <TdElement
+            padding={2}
             text={
               <InputStyle
                 value={descriptionValue}
@@ -75,23 +95,37 @@ export const ContactItem = ({
             }
           />
           <TdElement
+            padding={2}
             text={
               <div className="flex gap-2">
-                <div
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                <button
+                  type="button"
+                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center cursor-pointer"
                   onClick={() => setEditMode(false)}
                 >
                   Cancel
-                </div>
-                <div className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                </button>
+                <button
+                  onClick={handleEdit}
+                  type="button"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
                   Confirm
-                </div>
+                </button>
               </div>
             }
           />
+          <td className={`p-${paddingSize} sm:w-auto`}>
+            <div
+              onClick={handleDelete}
+              className="p-3 cursor-pointer text-lg rounded hover:bg-gray-200 flex items-center justify-center"
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
+          </td>
         </tr>
       ) : (
-        <tr className="sm:table-row flex flex-wrap sm:p-2 border-b-gray-300 border-2">
+        <tr className="sm:table-row flex flex-wrap sm:p-2 border-b-gray-200 border-2">
           <TdElement text={first_name} padding={paddingSize} />
           <TdElement text={last_name} padding={paddingSize} />
           <TdElement text={job} padding={paddingSize} />
