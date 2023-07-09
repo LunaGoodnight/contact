@@ -1,4 +1,4 @@
-import { TdElement } from "@/app/TdElement";
+import { TdElement } from "@/app/_contact/TdElement";
 
 export const ContactItem = ({
   first_name,

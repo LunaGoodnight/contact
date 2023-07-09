@@ -1,7 +1,7 @@
 "use client";
 
-import { AddContactPanel } from "@/app/AddContactPanel";
-import { ContactItem } from "@/app/ContactItem";
+import { AddContactPanel } from "@/app/_contact/AddContactPanel";
+import { ContactItem } from "@/app/_contact/ContactItem";
 import { SortButton } from "@/app/SortButton";
 import { sortKeyMap } from "@/config/sortKeyMap";
 import { sortOrderMap } from "@/config/sortOrderMap";

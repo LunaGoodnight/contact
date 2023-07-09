@@ -1,4 +1,4 @@
-import { ContactPanel } from "@/app/ContactPanel";
+import { ContactPanel } from "@/app/_contact/ContactPanel";
 
 export default function Home() {
   return (

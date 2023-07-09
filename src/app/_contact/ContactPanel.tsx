@@ -1,5 +1,5 @@
-import { AddContactPanel } from "@/app/AddContactPanel";
-import { ContactList } from "@/app/ConcactList";
+import { AddContactPanel } from "@/app/_contact/AddContactPanel";
+import { ContactList } from "@/app/_contact/ConcactList";
 
 interface ContactResponse extends Response {
   statusCode?: number;
