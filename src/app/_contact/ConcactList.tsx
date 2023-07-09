@@ -40,7 +40,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
   }, [sortBy, firstNameSort, lastNameSort]);
 
   return (
-    <table className="table-auto w-full text-left rounded-lg bg-gray-300 sm:table flex flex-col">
+    <table className="table-auto w-full text-left rounded-lg bg-gray-100 sm:table flex flex-col">
       <thead>
         <tr className="border border-b-blue-300 sm:table-row flex">
           <th className="p-4">
@@ -89,7 +89,7 @@ export const ContactList = ({ list }: { list: Contact[] }) => {
       </thead>
       <tbody>
         {data.map(({ id, ...others }) => {
-          return <ContactItem key={id} {...others} />;
+          return <ContactItem key={id} id={id} {...others} />;
         })}
       </tbody>
     </table>
