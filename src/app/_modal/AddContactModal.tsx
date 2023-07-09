@@ -1,3 +1,4 @@
+import { FormWrapper } from "@/app/_modal/FormWrapper";
 import { ModalContentWrapper } from "@/app/_modal/ModalContentWrapper";
 import { ShadowWrapper } from "@/app/_modal/ShadowWrapper";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +25,7 @@ export const AddContactModal = () => {
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
-        <div className="flex flex-col gap-2">
+        <FormWrapper>
           <div className="flex gap-2 p-2 justify-start items-center">
             <div className="w-1/6">First Name</div>
             <input
@@ -34,7 +35,7 @@ export const AddContactModal = () => {
               onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
-        </div>
+        </FormWrapper>
       </ModalContentWrapper>
     </ShadowWrapper>
   );
