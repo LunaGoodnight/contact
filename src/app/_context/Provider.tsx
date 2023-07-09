@@ -8,16 +8,6 @@ import {
   useState,
 } from "react";
 
-type ToastType = "Success" | "Warning";
-interface IContactContext {
-  text: string;
-  type: ToastType;
-}
-
-const defaultState = {
-  text: "",
-  type: "Success" as ToastType,
-};
 interface IModalType {
   modalType: string | null;
   setModalType: Dispatch<SetStateAction<string | null>>;

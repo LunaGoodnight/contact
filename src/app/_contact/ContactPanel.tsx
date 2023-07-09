@@ -15,7 +15,6 @@ async function getData() {
 
 export const ContactPanel = async () => {
   const res = await getData();
-  console.log({ res });
   return (
     <div className="flex gap-3 flex-col p-8 lg:p-20">
       <AddContactPanel />
