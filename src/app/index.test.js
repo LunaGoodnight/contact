@@ -1,7 +1,7 @@
 import renderer from "react-test-renderer";
 import { ModalContentWrapper } from "./_modal/ModalContentWrapper";
 
-it("renders correctly", () => {
+it("renders modal wrapper correctly", () => {
   const tree = renderer
     .create(
       <ModalContentWrapper>
