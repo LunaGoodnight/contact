@@ -39,4 +39,5 @@ Use React context API to avoid Props drilling
 
 1. deploy部份有使用Vercel，但因為我比較熟悉前端靜態網站deploy，所以沒有把後端也佈上去，這部份還需要學習
 2. 若能順利deploy前端、後端，會想加入e2e測試(PlayWright)
+3. 前端佈署產生的網址：https://contact-xi-kohl.vercel.app/
 
