@@ -1,7 +1,12 @@
+解釋這個專案的筆記：
 
+Css module:
+因為選用tailwind css，我是用把共用的class做成一個component來當成模組
+Test:
+目前只有snapshot testing，如果有佈署成功可以加e2e
 
-
-
+Plugin used:
+SweetAlert for easy customize
 Deploy:
 have tried Vercel but due to me not familiar with Node.js api, so I didn't deploy express API,
 and front end part can't work normally without API (https://contact-91okj6za8-lunagoodnight.vercel.app/)
