@@ -24,7 +24,8 @@ Use React context API to avoid Props drilling
 
 ### Testing
 1. 有使用Jest的snapshot testing 
-2. 原本想使用React Testing Library，但Next.js App Router因為還太新，相容性上似乎有問題，這塊還需要研究。
+2. 原本想使用React Testing Library，但Next.js App Router因為還太新，相容性上似乎有問題，這塊還需要研究。 參考：  [[NEXT-863] Unable to test page components using metadata API with Jest](https://github.com/vercel/next.js/issues/47299)
+
 
 ## 程式邏輯
 
